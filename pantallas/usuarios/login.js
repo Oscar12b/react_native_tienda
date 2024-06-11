@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground, D
 
 const { width, height } = Dimensions.get('window');
 
-const LoginScreen = () => {
+const Login = () => {
     return (
         <ImageBackground source={require('./assets/fondo.png')} style={styles.backgroundImage}>
             <View style={styles.container}>
@@ -59,12 +59,10 @@ const styles = StyleSheet.create({
     },
     input: {
         height: 40,
-        borderColor: '#DDDDDD',
-        borderWidth: 1,
         borderRadius: 5,
         paddingHorizontal: 10,
         marginBottom: 15,
-        backgroundColor: '#F5F5F5',
+        backgroundColor: '#D9D9D9',
         marginBottom: 20,
     },
     forgotPassword: {
@@ -88,4 +86,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default LoginScreen;
+export default Login;
