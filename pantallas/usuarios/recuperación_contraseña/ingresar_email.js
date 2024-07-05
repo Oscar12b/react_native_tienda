@@ -3,20 +3,16 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground, D
 
 const { width, height } = Dimensions.get('window');
 
-const Login = () => {
+const IngresarCorreo = () => {
     return (
         <ImageBackground source={require('./assets/fondo.png')} style={styles.backgroundImage}>
             <View style={styles.container}>
                 <View style={styles.formContainer}>
-                    <Text style={styles.title}>Iniciar sesión</Text>
-                    <Text style={styles.firstTime}>
-                        ¿Primera vez que ingresas? <Text style={styles.register}>Registrarme</Text>
-                    </Text>
-                    <TextInput style={styles.input} placeholder="Usuario" />
-                    <TextInput style={styles.input} placeholder="Contraseña" secureTextEntry={true} />
-                    <Text style={styles.forgotPassword}>¿Olvidaste tu contraseña?</Text>
+                    <Text style={styles.title}>Recuperar contraseña</Text>
+                    <Text style={styles.label}>Ingrese su correo:</Text>
+                    <TextInput style={styles.input} placeholder="Email" />
                     <TouchableOpacity style={styles.button}>
-                        <Text style={styles.buttonText}>Ingresar</Text>
+                        <Text style={styles.buttonText}>Enviar</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -33,7 +29,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingBottom: 110,
+        paddingBottom: 160,
     },
     formContainer: {
         width: '75%',
@@ -42,36 +38,18 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
     },
     title: {
-        fontSize: 24,
+        fontSize: 26,
         fontWeight: 'bold',
         textAlign: 'center',
         marginBottom: 20,
     },
-    firstTime: {
-        fontSize: 14,
-        textAlign: 'center',
-        marginTop: 5,
-        marginBottom: 30,
-    },
-    register: {
-        color: '#1E90FF',
-        textDecorationLine: 'underline',
-    },
     input: {
-        height: 40,
-        borderRadius: 5,
+        height: 50,
+        borderRadius: 15,
         paddingHorizontal: 10,
         marginBottom: 15,
         backgroundColor: '#D9D9D9',
-        marginBottom: 20,
-    },
-    forgotPassword: {
-        fontSize: 14,
-        color: '#1E90FF',
-        textAlign: 'center',
-        marginTop: 10,
-        marginBottom: 30,
-        textDecorationLine: 'underline',
+        marginBottom: 55,
     },
     button: {
         backgroundColor: 'black',
@@ -84,6 +62,14 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
     },
+    label: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#000',
+        marginBottom: 15,
+        marginLeft: '2%',
+        marginTop: 30,
+    },
 });
 
-export default Login;
+export default IngresarCorreo;

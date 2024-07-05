@@ -8,7 +8,7 @@ const Register = () => {
         <ImageBackground source={require('./assets/fondo.png')} style={styles.backgroundImage}>
             <View style={styles.container}>
                 <View style={styles.formContainer}>
-                    <Text style={styles.title}>Registrarme</Text>
+                    <Text style={styles.title}>Editar perfil</Text>
                     <TextInput style={styles.input} placeholder="Nombre" />
                     <TextInput style={styles.input} placeholder="Apellido" />
                     <TextInput style={styles.input} placeholder="DUI" />
@@ -16,13 +16,9 @@ const Register = () => {
                     <TextInput style={styles.input} placeholder="Dirección" />
                     <TextInput style={styles.input} placeholder="Correo" />
                     <TextInput style={styles.input} placeholder="Usuario" />
-                    <TextInput style={styles.input} placeholder="Contraseña" secureTextEntry={true} />
                     <TouchableOpacity style={styles.button}>
-                        <Text style={styles.buttonText}>Registrarme</Text>
+                        <Text style={styles.buttonText}>Actualizar</Text>
                     </TouchableOpacity>
-                    <Text style={styles.firstTime}>
-                        ¿Ya tienes una cuenta? <Text style={styles.register}>Iniciar sesión</Text>
-                    </Text>
                 </View>
             </View>
         </ImageBackground>
@@ -52,15 +48,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginBottom: 20,
     },
-    firstTime: {
-        fontSize: 14,
-        textAlign: 'center',
-        marginTop: 20,
-    },
-    register: {
-        color: '#1E90FF',
-        textDecorationLine: 'underline',
-    },
     input: {
         height: 40,
         borderRadius: 5,
@@ -68,14 +55,6 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         backgroundColor: '#D9D9D9',
         marginBottom: 20,
-    },
-    forgotPassword: {
-        fontSize: 14,
-        color: '#1E90FF',
-        textAlign: 'center',
-        marginTop: 10,
-        marginBottom: 30,
-        textDecorationLine: 'underline',
     },
     button: {
         backgroundColor: 'black',
