@@ -3,9 +3,9 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground, D
 
 const { width, height } = Dimensions.get('window');
 
-const Register = () => {
+const Register = ({ navigation }) => {
     return (
-        <ImageBackground source={require('./assets/fondo.png')} style={styles.backgroundImage}>
+        <ImageBackground source={require('../../assets/fondo.png')} style={styles.backgroundImage}>
             <View style={styles.container}>
                 <View style={styles.formContainer}>
                     <Text style={styles.title}>Registrarme</Text>
@@ -21,7 +21,7 @@ const Register = () => {
                         <Text style={styles.buttonText}>Registrarme</Text>
                     </TouchableOpacity>
                     <Text style={styles.firstTime}>
-                        ¿Ya tienes una cuenta? <Text style={styles.register}>Iniciar sesión</Text>
+                        ¿Ya tienes una cuenta? <Text style={styles.register} onPress={() => navigation.navigate('Login')}>Iniciar sesión</Text>
                     </Text>
                 </View>
             </View>

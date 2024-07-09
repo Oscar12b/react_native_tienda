@@ -1,7 +1,8 @@
 
-// COSTANTE DEL ENDPOINT DEL SERVIDOR
-export const SERVER_URL = 'http://localhost/api/';
+import { fetchData } from './componentes.js';
 
+// COSTANTE DEL ENDPOINT DEL SERVIDOR
+export const SERVER_URL = 'http://192.168.1.26/api/';
 
 /**
  * NOTA: LAS CONSTANTES SE DEFINEN DE LA SIGUIENTE MANERA
