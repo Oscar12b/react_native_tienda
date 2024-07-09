@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, FlatList } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 // Componente Header
 const Header = () => {
@@ -16,7 +17,7 @@ const SearchBar = () => {
     <View style={styles.searchBar}>
       <TextInput style={styles.searchInput} placeholder="Buscar" />
       <TouchableOpacity style={styles.searchButton}>
-        <Text style={styles.searchButtonText}>🔍</Text>
+      <Icon name="search" size={20} color="#000" style={styles.searchIcon} />
       </TouchableOpacity>
     </View>
   );

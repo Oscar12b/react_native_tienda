@@ -29,18 +29,6 @@ const ProfileDetail = ({ label, value }) => {
   );
 };
 
-// Componente BottomNavBar
-const BottomNavBar = () => {
-  return (
-    <View style={styles.bottomNavBar}>
-      <Text style={styles.navItem}>Inicio</Text>
-      <Text style={styles.navItem}>Tienda</Text>
-      <Text style={styles.navItem}>Cotiza</Text>
-      <Text style={styles.navItem}>Perfil</Text>
-    </View>
-  );
-};
-
 // Componente Principal App
 const App = () => {
   return (
