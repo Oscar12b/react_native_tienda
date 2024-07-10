@@ -1,35 +1,37 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import TiendaScreen from './pantallas/tienda/tienda';
-import PedidosScreen from './pantallas/pedidos/carrito';
+import { createStackNavigator } from '@react-navigation/stack';
+import Login from './pantallas/usuarios/login';
+import Register from './pantallas/usuarios/register';
+import CambiarContraseña from './pantallas/usuarios/recuperación_contraseña/cambiar_contraseña';
+import IngresarCodigo from './pantallas/usuarios/recuperación_contraseña/ingresar_codigo';
+import IngresarEmail from './pantallas/usuarios/recuperación_contraseña/ingresar_email';
 
-const Tab = createBottomTabNavigator();
+import Main from './utilidades/navigation';
 
-function MyTabs() {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="Tienda" component={TiendaScreen} />
-      <Tab.Screen name="Pedidos" component={PedidosScreen} />
-    </Tab.Navigator>
-  );
-}
+
+const Stack = createStackNavigator();
+
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <NavigationContainer>
-        <MyTabs />
-      </NavigationContainer>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{
+        headerShown: false, // Esto oculta la barra superior en todas las pantallas
+      }} initialRouteName="Login">
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="CambiarContraseña" component={CambiarContraseña} />
+        <Stack.Screen name="IngresarCodigo" component={IngresarCodigo} />
+        <Stack.Screen name="IngresarEmail" component={IngresarEmail} />
+        <Stack.Screen name="Register" component={Register} />
+        <Stack.Screen name="Main" component={Main} />
+
+      </Stack.Navigator>
+    </NavigationContainer >
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
+
 });

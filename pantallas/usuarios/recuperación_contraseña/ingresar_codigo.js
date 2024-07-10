@@ -3,16 +3,16 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground, D
 
 const { width, height } = Dimensions.get('window');
 
-const IngresarCorreo = () => {
+const IngresarCorreo = ({ navigation }) => {
     return (
-        <ImageBackground source={require('./assets/fondo.png')} style={styles.backgroundImage}>
+        <ImageBackground source={require('../../../assets/fondo.png')} style={styles.backgroundImage}>
             <View style={styles.container}>
                 <View style={styles.formContainer}>
                     <Text style={styles.title}>Recuperar contraseña</Text>
                     <Text style={styles.label}>Ingrese el código:</Text>
                     <TextInput style={styles.input} placeholder="XXXX-XXXX" />
                     <Text style={styles.resendCode}>Reenviar código</Text>
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('CambiarContraseña')}>
                         <Text style={styles.buttonText}>Enviar</Text>
                     </TouchableOpacity>
                 </View>
