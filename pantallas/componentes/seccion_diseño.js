@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-const DesignSection = () => {
+const seccion_diseño = () => {
     return (
         <View style={styles.container}>
             <Image source={require('./assets/design-main.jpg')} style={styles.mainImage} />
@@ -44,4 +44,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default DesignSection;
+export default seccion_diseño;

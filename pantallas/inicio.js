@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, ScrollView, StyleSheet, Dimensions } from 'react-native';
-import Header from './Header';
-import MainImage from './MainImage';
-import SectionTitle from './SectionTitle';
-import ProductCard from './ProductCard';
-import DesignSection from './DesignSection';
-import QuoteButton from './QuoteButton';
-import CategoryCard from './CategoryCard';
+import Header from './componentes/encabezado';
+import MainImage from './componentes/imagen';
+import SectionTitle from './componentes/titulo_seccion';
+import ProductCard from './componentes/carta_producto';
+import DesignSection from './componentes/seccion_diseño';
+import QuoteButton from './componentes/botones';
+import CategoryCard from './componentes/carta_categoria';
 import BottomNavBar from './BottomNavBar';
 
 const { width } = Dimensions.get('window');

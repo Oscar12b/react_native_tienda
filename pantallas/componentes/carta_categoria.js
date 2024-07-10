@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-const CategoryCard = ({ image, title }) => {
+const carta_categoria = ({ image, title }) => {
     return (
         <View style={styles.card}>
             <Image source={image} style={styles.image} />
@@ -36,4 +36,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default CategoryCard;
+export default carta_categoria;
