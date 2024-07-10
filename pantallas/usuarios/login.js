@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground, Dimensions } from 'react-native';
-import { fetchData, CLIENTES_API, almacenarIdentificadorSesion, logout } from '../../utilidades/componentes';
+import { fetchData, CLIENTES_API } from '../../utilidades/componentes';
 import { controlAcceso } from '../../servicios/clientesservicios';
 
 const { width, height } = Dimensions.get('window');
@@ -11,7 +11,7 @@ const Login = ({ navigation }) => {
     const [contrasena, setContrasena] = useState('');
     const [error, setError] = useState('');
 
-    
+
     useEffect(() => {
         const checkAccess = async () => {
             await controlAcceso(navigation);
@@ -40,7 +40,7 @@ const Login = ({ navigation }) => {
             if (RESPONSE.status && RESPONSE.session) {
                 console.warn(RESPONSE.message);
                 setError('');  // Clear error if login is successful
-                navigation.navigate('Catalogo');
+                navigation.navigate('Main');
                 return RESPONSE;
             } else {
                 setError(RESPONSE.error || 'Error al iniciar sesión.');
@@ -75,8 +75,8 @@ const Login = ({ navigation }) => {
                     />
                     {error ? <Text style={styles.errorText}>{error}</Text> : null}
 
-                    <Text style={styles.forgotPassword}>¿Olvidaste tu contraseña?</Text>
-                    <TouchableOpacity style={styles.button} onPress={iniciarSession}>
+                    <Text style={styles.forgotPassword} onPress={() => navigation.navigate('IngresarEmail')}>¿Olvidaste tu contraseña?</Text>
+                    <TouchableOpacity style={styles.button} onPress={() => iniciarSession()}>
                         <Text style={styles.buttonText}>Ingresar</Text>
                     </TouchableOpacity>
                 </View>

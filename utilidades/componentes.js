@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // CONSTANTES DE LOS ENDPOINTS DE LOS SERVICIOS
 export const CLIENTES_API = 'services/public/clientes.php';
-export const PRODUCTOS_API = 'services/public/productos.php';
+export const PRODUCTOS_API = 'services/public/muebles.php';
 export const PEDIDOS_API = 'services/public/pedidos.php';
 
 

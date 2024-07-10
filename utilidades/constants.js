@@ -1,6 +1,3 @@
-
-import { fetchData } from './componentes.js';
-
 // COSTANTE DEL ENDPOINT DEL SERVIDOR
 export const SERVER_URL = 'http://192.168.1.26/api/';
 

@@ -1,42 +1,41 @@
-// /src/pantallas/componentes/SearchBar.js
 import React from 'react';
-import styled from 'styled-components';
+import { View, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-const SearchBarWrapper = styled.div`
-  display: flex;
-  margin-top: 10px;
-`;
-
-const SearchInput = styled.input`
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px 0 0 5px;
-  outline: none;
-`;
-
-const SearchButton = styled.button`
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-left: none;
-  background-color: #ffa500;
-  border-radius: 0 5px 5px 0;
-  cursor: pointer;
-
-  img {
-    width: 20px;
-    height: 20px;
-  }
-`;
-
-const SearchBar = () => {
+const SearchBar = ({ onChangeText }) => {
   return (
-    <SearchBarWrapper>
-      <SearchInput type="text" placeholder="Buscar" />
-      <SearchButton>
-        <img src="/path-to-icons/search-icon.png" alt="Buscar" />
-      </SearchButton>
-    </SearchBarWrapper>
+    <View style={styles.searchBar}>
+      <TextInput
+        style={styles.searchInput}
+        placeholder="Buscar"
+        onChangeText={onChangeText}
+      />
+      <TouchableOpacity style={styles.searchButton}>
+        <Icon name="search" size={20} color="#000" style={styles.searchIcon} />
+      </TouchableOpacity>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  searchBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 10,
+    backgroundColor: '#F0F0F0',
+    borderRadius: 10,
+    paddingHorizontal: 10,
+  },
+  searchInput: {
+    flex: 1,
+    paddingVertical: 10,
+  },
+  searchButton: {
+    padding: 10,
+    backgroundColor: '#FFC107',
+    borderRadius: 10,
+    marginLeft: 5,
+  },
+});
 
 export default SearchBar;
