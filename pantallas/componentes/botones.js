@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
-const cotizar_buton = ({ onPress }) => {
+const QuoteButton = ({ onPress }) => {
     return (
         <TouchableOpacity style={styles.button} onPress={onPress}>
             <Text style={styles.buttonText}>Cotizar</Text>
@@ -26,4 +26,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default cotizar_buton;
+export default QuoteButton;

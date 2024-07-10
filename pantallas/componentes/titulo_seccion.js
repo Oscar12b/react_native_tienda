@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const titulo_seccion = ({ title }) => {
+const SectionTitle = ({ title }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>{title}</Text>
@@ -20,4 +20,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default titulo_seccion;
+export default SectionTitle;

@@ -1,14 +1,14 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-const seccion_diseño = () => {
+const DesignSection = () => {
     return (
         <View style={styles.container}>
-            <Image source={require('./assets/design-main.jpg')} style={styles.mainImage} />
+            <Image source={require('../../assets/icon.png')} style={styles.mainImage} />
             <View style={styles.imageContainer}>
-                <Image source={require('./assets/design-1.jpg')} style={styles.image} />
-                <Image source={require('./assets/design-2.jpg')} style={styles.image} />
-                <Image source={require('./assets/design-3.jpg')} style={styles.image} />
+                <Image source={require('../../assets/icon.png')} style={styles.image} />
+                <Image source={require('../../assets/icon.png')} style={styles.image} />
+                <Image source={require('../../assets/icon.png')} style={styles.image} />
             </View>
             <Text style={styles.description}>
                 Donec mattis porta eros, aliquet finibus risus interdum at. Nulla vivethe as it was for us to know what was to be done. the this is a long post for the text.
@@ -44,4 +44,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default seccion_diseño;
+export default DesignSection;
