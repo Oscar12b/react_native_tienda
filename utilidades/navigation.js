@@ -2,9 +2,13 @@ import { StyleSheet } from 'react-native';
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
-import Inicio from '../pantallas/tienda/tienda';
+import Tienda from '../pantallas/tienda/tienda';
 import Carrito from '../pantallas/pedidos/carrito';
 import Perfil from '../pantallas/usuarios/editar_perfil';
+//import Inicio from '../pantallas/inicio';
+
+// <Tab.Screen name="Inicio" component={Inicio} />
+
 
 const Tab = createBottomTabNavigator();
 
@@ -16,7 +20,7 @@ function TabNavigator() {
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
 
-                    if (route.name === 'Inicio') {
+                    if (route.name === 'Tienda') {
                         iconName = focused ? 'school' : 'school-outline';
                     } else if (route.name === 'Carrito') {
                         iconName = focused ? 'cart' : 'cart-outline';
@@ -24,13 +28,14 @@ function TabNavigator() {
                         iconName = focused ? 'person' : 'person-outline';
                     }
 
+
                     return <Icon name={iconName} size={size} color={color} />;
                 },
                 tabBarActiveTintColor: 'blue',
                 tabBarInactiveTintColor: 'gray',
             })}
         >
-            <Tab.Screen name="Inicio" component={Inicio} />
+            <Tab.Screen name="Tienda" component={Tienda} />
             <Tab.Screen name="Carrito" component={Carrito} />
             <Tab.Screen name="Perfil" component={Perfil} />
         </Tab.Navigator>
