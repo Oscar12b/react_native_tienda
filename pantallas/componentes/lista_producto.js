@@ -24,7 +24,7 @@ const products = [
   { id: 6, name: 'Mueble Aereo', price: 223.00, imageUrl: '/path-to-images/product-image.png' },
 ];
 
-const ProductList = () => {
+const lista_producto = () => {
   return (
     <ProductListWrapper>
       {products.map(product => (
@@ -34,4 +34,4 @@ const ProductList = () => {
   );
 };
 
-export default ProductList;
+export default lista_producto;

@@ -1,13 +1,11 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-const ProductCard = ({ image, title, price }) => {
+const CategoryCard = ({ image, title }) => {
     return (
         <View style={styles.card}>
             <Image source={image} style={styles.image} />
             <Text style={styles.title}>{title}</Text>
-            <Text style={styles.price}>{price}</Text>
-            <Text style={styles.details}>Ver Detalles</Text>
         </View>
     );
 };
@@ -36,15 +34,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginVertical: 5,
     },
-    price: {
-        fontSize: 16,
-        color: '#888',
-    },
-    details: {
-        fontSize: 14,
-        color: '#00f',
-        marginTop: 5,
-    },
 });
 
-export default ProductCard;
+export default CategoryCard;

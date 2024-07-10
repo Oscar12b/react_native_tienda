@@ -1,23 +1,24 @@
-// /src/pantallas/componentes/Header.js
 import React from 'react';
-import styled from 'styled-components';
-import SearchBar from './barra_busqueda';
-
-const HeaderWrapper = styled.header`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  background-color: #fff;
-`;
+import { View, Text, StyleSheet } from 'react-native';
 
 const Header = () => {
-  return (
-    <HeaderWrapper>
-      <h1>Muebles.sv</h1>
-      <SearchBar />
-    </HeaderWrapper>
-  );
+    return (
+        <View style={styles.header}>
+            <Text style={styles.headerText}>Muebles.sv</Text>
+        </View>
+    );
 };
+
+const styles = StyleSheet.create({
+    header: {
+        paddingVertical: 20,
+        alignItems: 'center',
+        backgroundColor: '#fff',
+    },
+    headerText: {
+        fontSize: 24,
+        fontWeight: 'bold',
+    },
+});
 
 export default Header;
