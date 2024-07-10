@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import NavStack from './navegacion/nav_stack';
 import Login from './pantallas/usuarios/login';
 import Register from './pantallas/usuarios/register';
 import CambiarContraseña from './pantallas/usuarios/recuperación_contraseña/cambiar_contraseña';
@@ -28,6 +29,7 @@ export default function App() {
         <Stack.Screen name="Main" component={Main} />
 
       </Stack.Navigator>
+      <NavStack/>
     </NavigationContainer >
   );
 }
