@@ -12,48 +12,48 @@ import CategoryCard from './pantallas/componentes/carta_categoria';
 const { width } = Dimensions.get('window');
 
 const Inicio = () => {
-  return (
-    <View style={styles.container}>
-      <Header />
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        <MainImage />
-        <SectionTitle title="Productos de la semana" />
-        <View style={styles.productsContainer}>
-          <ProductCard image={require('../../assets/icon.png')} title="Mueble Aereo" price="$223,00" />
-          <ProductCard image={require('../../assets/icon.png')} title="Mueble Aereo" price="$223,00" />
+    return (
+        <View style={styles.container}>
+            <Header />
+            <ScrollView contentContainerStyle={styles.scrollViewContent}>
+                <MainImage />
+                <SectionTitle title="Productos de la semana" />
+                <View style={styles.productsContainer}>
+                    <ProductCard image={require('./assets/icon.png')} title="Mueble Aereo" price="$223,00" />
+                    <ProductCard image={require('./assets/icon.png')} title="Mueble Aereo" price="$223,00" />
+                </View>
+                <DesignSection />
+                <QuoteButton onPress={() => alert('Cotizar')} />
+                <SectionTitle title="Categorías" />
+                <View style={styles.categoriesContainer}>
+                    <CategoryCard image={require('./assets/icon.png')} title="Salas" />
+                    <CategoryCard image={require('./assets/icon.png')} title="Dormitorios" />
+                </View>
+            </ScrollView>
         </View>
-        <DesignSection />
-        <QuoteButton onPress={() => alert('Cotizar')} />
-        <SectionTitle title="Categorías" />
-        <View style={styles.categoriesContainer}>
-          <CategoryCard image={require('../../assets/icon.png')} title="Salas" />
-          <CategoryCard image={require('../../assets/icon.png')} title="Dormitorios" />
-        </View>
-      </ScrollView>
-    </View>
-  );
+    );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  scrollViewContent: {
-    paddingBottom: 100,
-  },
-  productsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    flexWrap: 'wrap',
-    marginHorizontal: 10,
-  },
-  categoriesContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    flexWrap: 'wrap',
-    marginHorizontal: 10,
-  },
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+    },
+    scrollViewContent: {
+        paddingBottom: 100,
+    },
+    productsContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        flexWrap: 'wrap',
+        marginHorizontal: 10,
+    },
+    categoriesContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        flexWrap: 'wrap',
+        marginHorizontal: 10,
+    },
 });
 
 export default Inicio;
