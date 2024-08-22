@@ -1,10 +1,14 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
+// Componente de Pedido
 const OrderItem = ({ order }) => {
     return (
+        // Estructura del Pedido
         <View style={styles.orderItem}>
             <Text style={styles.orderDate}>{order.date}</Text>
+
+            {/* Botón de Detalle del Pedido */}
             <TouchableOpacity style={styles.orderButton}>
                 <Text style={styles.orderButtonText}>Detalle del pedido</Text>
             </TouchableOpacity>
@@ -12,6 +16,7 @@ const OrderItem = ({ order }) => {
     );
 };
 
+// Estilos
 const styles = StyleSheet.create({
     orderItem: {
         flexDirection: 'row',

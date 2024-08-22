@@ -1,14 +1,31 @@
+//Importaciones
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 
+// Componente de Detalles de Pedido
 const OrderDetail = ({ route }) => {
+
+    {/* Extraer el pedido de la ruta */}
     const { order } = route.params;
+
     return (
+
+        // Estructura de los Detalles del Pedido
         <View style={styles.container}>
+
+            {/* Contenedor del Pedido */}
             <View style={styles.orderContainer}>
+
+                {/* Imagen del Pedido */}
                 <Image style={styles.image} source={require('../assets/placeholder-image.png')} />
+
+                {/* Contenedor de Texto */}
                 <View style={styles.textContainer}>
+
+                    {/* Nombre y Precio del Pedido */}
                     <Text style={styles.orderName}>{order.name}</Text>
+
+                    {/* Precio del Pedido */}
                     <Text style={styles.orderPrice}>{order.price}</Text>
                 </View>
             </View>
@@ -16,6 +33,7 @@ const OrderDetail = ({ route }) => {
     );
 };
 
+// Estilos
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -52,4 +70,5 @@ const styles = StyleSheet.create({
     },
 });
 
+// Exportar componente
 export default OrderDetail;

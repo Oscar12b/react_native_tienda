@@ -1,15 +1,22 @@
+// Importaciones de React y de componentes de React Native necesarios
 import React from 'react';
 import { View, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+// Componente de Barra de Búsqueda
 const SearchBar = ({ onChangeText }) => {
   return (
+    // Estructura de la Barra de Búsqueda
     <View style={styles.searchBar}>
+
+      {/* Campo de Búsqueda */}
       <TextInput
         style={styles.searchInput}
         placeholder="Buscar"
         onChangeText={onChangeText}
       />
+
+      {/* Botón de Búsqueda */}
       <TouchableOpacity style={styles.searchButton}>
         <Icon name="search" size={20} color="#000" style={styles.searchIcon} />
       </TouchableOpacity>
@@ -17,6 +24,7 @@ const SearchBar = ({ onChangeText }) => {
   );
 };
 
+// Estilos
 const styles = StyleSheet.create({
   searchBar: {
     flexDirection: 'row',
@@ -38,4 +46,5 @@ const styles = StyleSheet.create({
   },
 });
 
+// Exportar componente
 export default SearchBar;

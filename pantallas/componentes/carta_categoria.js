@@ -1,15 +1,22 @@
+// Importamos las librerías y hooks necesarios
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
+// Componente de Carta de Categoría
 const CategoryCard = ({ image, title }) => {
     return (
+
+        // Estructura de la carta de categoría
         <View style={styles.card}>
+
+            {/* Imagen de la categoría */}
             <Image source={image} style={styles.image} />
             <Text style={styles.title}>{title}</Text>
         </View>
     );
 };
 
+// Estilos
 const styles = StyleSheet.create({
     card: {
         width: '45%',
@@ -36,4 +43,5 @@ const styles = StyleSheet.create({
     },
 });
 
+// Exportar componente
 export default CategoryCard;
