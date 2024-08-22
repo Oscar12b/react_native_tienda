@@ -1,12 +1,6 @@
 import { SERVER_URL } from './constants.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// CONSTANTES DE LOS ENDPOINTS DE LOS SERVICIOS
-export const CLIENTES_API = 'services/public/clientes.php';
-export const PRODUCTOS_API = 'services/public/muebles.php';
-export const PEDIDOS_API = 'services/public/pedidos.php';
-
-
 // FUNCION PARA ALMACENAR EL IDENTIFICADOR DE LA SESION
 export const almacenarIdentificadorSesion = async (SESSION_ID) => {
     try {
@@ -70,14 +64,19 @@ export const fetchData = async (filename, action, form = null, dataprovisional =
             // Add the action parameter to the URL
             const URL_WITH_ACTION = `${PATH}?action=${action}`;
 
-            console.warn(URL_WITH_ACTION);
+            // console.warn(URL_WITH_ACTION);
             // Obtener el identificador de sesión y agregarlo a los encabezados
-            console.warn(OPTIONS.body);
+            // console.warn(OPTIONS.body);
+
 
             // Send the request and get the RESPONSE
             const RESPONSE = await fetch(URL_WITH_ACTION, OPTIONS);
 
             const COOKIES = RESPONSE.headers.get('set-cookie');
+
+            console.log(URL_WITH_ACTION);
+            //console.log(await RESPONSE.text());
+            // console.log(await RESPONSE.json());
 
             // Extraer el PHPSESSID de las COOKIES
             const PHPSESSID = COOKIES

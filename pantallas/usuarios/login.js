@@ -1,17 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground, Dimensions } from 'react-native';
-import { fetchData, CLIENTES_API } from '../../utilidades/componentes';
+
+// Importe de servicios de el servidor
+import { CLIENTES_API } from '../../utilidades/constants';
 import { controlAcceso } from '../../servicios/clientesservicios';
+
+//importe de libreria de alertas
+import { ALERT_TYPE, Dialog, Toast } from 'react-native-alert-notification';
+
+//importe de modulos 
+import CustomInput from '../../componentes/input_custom';
+import BotonConCarga from '../../componentes/boton_custom';
+//*********************************************************************
 
 const { width, height } = Dimensions.get('window');
 
 const Login = ({ navigation }) => {
 
+    // Hooks
+    //********************************************************************* */
     const [usuario, setUsuario] = useState('');
-    const [contrasena, setContrasena] = useState('');
-    const [error, setError] = useState('');
+    const [errorUsuario, setErrorUsuario] = useState('');
+
+    const [contra, setContrasena] = useState('');
+    const [errorContra, setErrorContra] = useState('');
+    const FORM_DATA = new FormData();
 
 
+    // Efectos
+    //*********************************************************************
     useEffect(() => {
         const checkAccess = async () => {
             await controlAcceso(navigation);
@@ -24,34 +41,92 @@ const Login = ({ navigation }) => {
     }, []);
 
 
-    const iniciarSession = async () => {
-        if (usuario === '' || contrasena === '') {
-            setError('Por favor, ingrese usuario y contraseña.');
-            return;
-        }
-
+    // Funciones
+    //*********************************************************************
+    const handleFetchComplete = async (data) => {
         try {
-            const FORM_DATA = new FormData();
-            FORM_DATA.append('alias', usuario);
-            FORM_DATA.append('clave', contrasena);
+            if (!data.status) {
+                Toast.show({
+                    type: ALERT_TYPE.WARNING,
+                    title: data.error || 'Credenciales incorrectas',
+                    textBody: 'Contraseña o usuario incorrecto',
+                });
 
-            const RESPONSE = await fetchData(CLIENTES_API, 'logIn', FORM_DATA);
+                setErrorUsuario('Usuario incorrecto');
+                setErrorContra('Contraseña incorrecta');
 
-            if (RESPONSE.status && RESPONSE.session) {
-                console.warn(RESPONSE.message);
-                setError('');  // Clear error if login is successful
-                navigation.navigate('Main');
-                return RESPONSE;
+                setTimeout(() => {
+                    setErrorUsuario('');
+                    setErrorContra('');
+                }, 2000);
+
             } else {
-                setError(RESPONSE.error || 'Error al iniciar sesión.');
+                await Toast.show({
+                    type: ALERT_TYPE.SUCCESS,
+                    title: 'Credenciales correctas',
+                    textBody: 'Ingreso al sistema exitoso',
+                    button: 'Ingresar',
+                });
+                navigation.navigate('Main'); // Navega a la pantalla principal o la deseada
             }
         } catch (error) {
-            setError('Error al conectar con el servidor.');
-            console.error(error);
+            setErrorUsuario('Usuario incorrecto');
+            setErrorContra('Contraseña incorrecta');
+            Toast.show({
+                type: ALERT_TYPE.WARNING,
+                title: 'Credeciales incorrectas',
+                textBody: 'No se pudo ingresar al sistema',
+            });
+        }
+
+    };
+
+    //Funciones de validaciones
+    //*********************************************************************
+    const handledPressValidacion = () => {
+
+        //se verifica si hay un usuario
+        if (!usuario) {
+            setErrorUsuario('Debe ingresar un usuario');
+            return false;
+        } else {
+            setErrorUsuario('');
+        }
+
+        //se verifica si hay una contrasena
+        if (!contra) {
+            setErrorContra('Debe ingresar una contraseña');
+            return false;
+        } else {
+            setErrorContra('');
+        }
+
+        //se verifica el ususrio
+        if (usuario && contra) {
+            //se verifica la longitud del usuario
+            if (usuario.length < 3) {
+                setErrorUsuario('El usuario debe tener al menos 3 caracteres');
+                return
+            } else if (contra.length < 6) {//se verifica la lsongitud de la contrasena
+                setErrorContra('La contraseña debe tener al menos 5 caracteres');
+                return false;
+            } else {
+                setErrorUsuario('');
+                setErrorContra('');
+
+                // Se crea un objeto FormData para enviar los datos al servidor
+                FORM_DATA.append('alias', usuario);
+                FORM_DATA.append('clave', contra);
+
+                return true;
+            }
+
         }
     };
 
 
+    // Render
+    //*********************************************************************
     return (
         <ImageBackground source={require('../../assets/fondo.png')} style={styles.backgroundImage}>
             <View style={styles.container}>
@@ -60,25 +135,34 @@ const Login = ({ navigation }) => {
                     <Text style={styles.firstTime}>
                         ¿Primera vez que ingresas? <Text style={styles.register} onPress={() => navigation.navigate('Register')}>Registrarme</Text>
                     </Text>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Usuario"
-                        value={usuario}
+                    <CustomInput
+                        style={styles.title}
+                        containerStyle={{ marginHorizontal: 10, marginBottom: 20 }}
+                        placeholder={'Usuario'}
+                        error={errorUsuario}
                         onChangeText={setUsuario}
+                        value={usuario}
                     />
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Contraseña"
-                        secureTextEntry={true}
-                        value={contrasena}
+                    <CustomInput
+                        style={styles.title}
+                        containerStyle={{ marginHorizontal: 10, marginBottom: 20 }}
+                        placeholder={'Contraseña'}
                         onChangeText={setContrasena}
+                        error={errorContra}
+                        value={contra}
+                        secureTextEntry
                     />
-                    {error ? <Text style={styles.errorText}>{error}</Text> : null}
 
                     <Text style={styles.forgotPassword} onPress={() => navigation.navigate('IngresarEmail')}>¿Olvidaste tu contraseña?</Text>
-                    <TouchableOpacity style={styles.button} onPress={() => iniciarSession()}>
-                        <Text style={styles.buttonText}>Ingresar</Text>
-                    </TouchableOpacity>
+                    <BotonConCarga
+                        filename={CLIENTES_API}
+                        action="logIn"
+                        form={FORM_DATA}
+                        colorId={1}
+                        onPress={handledPressValidacion}
+                        onFetchComplete={handleFetchComplete}
+                        label='Ingresar'
+                    />
                 </View>
             </View>
         </ImageBackground>

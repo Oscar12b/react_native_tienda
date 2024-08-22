@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import OrderList from './pantallas/components/lista_pedido';
+import OrderList from './components/lista_pedido';
 import Header from './pantallas/components/encabezado';
 import OrderDetail from './pantallas/components/OrderDetail';
 

@@ -4,7 +4,7 @@
     "slug": "react_native_mueblessv",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/img/icono_muebles_sv.jpg",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splashmueblessv.png",
@@ -16,12 +16,18 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/img/icono_muebles_sv.jpg",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.oscardevpr.react_native_mueblessv"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "168d1443-dded-4aa3-9705-5c2de2fcf583"
+      }
     }
   }
 }

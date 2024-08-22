@@ -1,6 +1,11 @@
 import React from 'react';
-import { fetchData, PEDIDOS_API } from '../../utilidades/componentes';
+import { fetchData } from '../../utilidades/componentes';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+
+import { SERVER_URL, PEDIDOS_API } from '../../utilidades/constants';
+//importe de libreria de alertas
+import { ALERT_TYPE, Dialog, Toast } from 'react-native-alert-notification';
+
 
 const ProductCard = ({ item }) => {
 
@@ -13,24 +18,40 @@ const ProductCard = ({ item }) => {
             const RESPONSE = await fetchData(PEDIDOS_API, 'addCart', FORM_DATA);
 
             if (RESPONSE.status) {
-                console.warn('Producto agregado al carrito');
+                Toast.show({
+                    type: ALERT_TYPE.SUCCESS,
+                    title: 'Producto agregado al carrito',
+                    textBody: 'Se ha agregado al carrito',
+                });
             } else {
-                console.error(RESPONSE.error || 'Error al agregar producto al carrito');
+                Toast.show({
+                    type: ALERT_TYPE.WARNING,
+                    title: RESPONSE.error || 'Error al agregar al carrito',
+                    textBody: 'No se pudo agregar al carrito',
+                });
             }
         } catch (error) {
-            console.error('No se pudo agregar al carrito: ', error);
+            Toast.show({
+                type: ALERT_TYPE.WARNING,
+                title: 'Error al agregar al carrito',
+                textBody: 'No se pudo agregar al carrito',
+            });
         }
     };
 
     return (
         <View style={styles.productCard}>
-            <Image source={{ uri: `http://192.168.1.26/api/imagenes/productos${item.imagen}` }} style={styles.productImage} />
+            <Image source={{ uri: `${SERVER_URL}/imagenes/productos${item.imagen}` }} style={styles.productImage} />
             <Text style={styles.productTitle}>{item.nombre_mueble}</Text>
             <Text style={styles.productPrice}>{`$ ${item.precio}`}</Text>
             {item.precio_antiguo && item.precio_antiguo !== '0.00' ? (
                 <Text style={styles.productOldPrice}>{`$ ${item.precio_antiguo}`}</Text>
             ) : null}
+
             <Text style={styles.productStock}>{`Stock: ${item.stock}`}</Text>
+
+            <Text style={styles.productStock}>{`valoración:${item.promedio_valoracion}`}</Text>
+
             <Text style={[styles.productStatus, { color: item.estado === 'disponible' ? '#4CAF50' : '#FF0000' }]}>
                 {item.estado}
             </Text>

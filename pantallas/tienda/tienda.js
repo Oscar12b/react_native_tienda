@@ -2,18 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ProductCard from '../componentes/card_productos';
-import { fetchData, PRODUCTOS_API } from '../../utilidades/componentes';
+import { fetchData } from '../../utilidades/componentes';
+import { PRODUCTOS_API, CLIENTES_API } from '../../utilidades/constants';
 import SearchBar from '../componentes/barra_busqueda';
+import Header from '../componentes/header';
 
+import { useFocusEffect } from '@react-navigation/native';
 
-// Componente Header
-const Header = () => {
-    return (
-        <View style={styles.header}>
-            <Text style={styles.headerText}>Muebles.sv</Text>
-        </View>
-    );
-};
+import { ALERT_TYPE, Dialog, Toast } from 'react-native-alert-notification';
+
 
 
 // Componente Principal App
@@ -21,10 +18,19 @@ const App = () => {
 
     const [products, setProducts] = useState([]);
     const [searchText, setSearchText] = useState('');
+    const [nombreUser, setNombreUser] = useState('');
 
     useEffect(() => {
         iniciarSession();
+        visualizarnombre();
     }, []);
+
+
+    useFocusEffect(
+        React.useCallback(() => {
+            iniciarSession();
+        }, [])
+    );
 
 
     const iniciarSession = async () => {
@@ -35,19 +41,35 @@ const App = () => {
             if (RESPONSE.status) {
                 setProducts(RESPONSE.dataset); // Update the state using the setProducts function
                 console.warn(RESPONSE.dataset);
+                console.log(RESPONSE.dataset);
             } else {
-                console.error(RESPONSE.error || 'Error al recopilar productos.');
+                Toast.show({
+                    type: ALERT_TYPE.WARNING,
+                    title: RESPONSE.error || 'Error al mostrar los productos',
+                    textBody: 'No se pudo mostrar los productos',
+                });
             }
         } catch (error) {
-            console.error(error);
+            Toast.show({
+                type: ALERT_TYPE.WARNING,
+                title: 'Error al mostrar los productos',
+                textBody: 'No se pudo mostrar los productos',
+            });
 
         }
 
     };
 
+    const visualizarnombre = async () => {
+        const RESPONSE = await fetchData(CLIENTES_API, 'getUser');
+        setNombreUser(RESPONSE.username);
+
+    }
+
     return (
         <View style={styles.container}>
             <Header />
+            <Text style={styles.title}>{nombreUser}</Text>
             <SearchBar onChangeText={setSearchText} />
             <FlatList
                 data={products}
@@ -66,13 +88,11 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         paddingHorizontal: 10,
     },
-    header: {
-        paddingVertical: 20,
-        alignItems: 'center',
-    },
-    headerText: {
+    title: {
         fontSize: 24,
         fontWeight: 'bold',
+        textAlign: 'center',
+        marginBottom: 20,
     },
     searchBar: {
         flexDirection: 'row',

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground, Dimensions } from 'react-native';
-import { fetchData, CLIENTES_API } from '../../utilidades/componentes';
+import { fetchData } from '../../utilidades/componentes';
+import { CLIENTES_API } from '../../utilidades/constants';
+
+import { ALERT_TYPE, Dialog, Toast } from 'react-native-alert-notification'
 
 const { width, height } = Dimensions.get('window');
 
@@ -17,27 +20,49 @@ const Register = ({ navigation }) => {
 
     const validarDatos = () => {
         if (!nombre || !apellido || !dui || !telefono || !direccion || !correo || !usuario || !clave) {
-            console.error('Todos los campos son obligatorios');
+            Toast.show({
+                type: ALERT_TYPE.WARNING,
+                title: 'Campos vacíos',
+                textBody: 'Todos los campos son requeridos',
+            });
+
             return false;
         }
 
         if (!validarTelefono(telefono)) {
-            console.error('Formato de teléfono inválido. Debe ser 0000-0000');
+            Toast.show({
+                type: ALERT_TYPE.WARNING,
+                title: 'Teléfono inválido',
+                textBody: 'El formato de teléfono debe ser 0000-0000',
+            });
             return false;
         }
 
         if (!validarDUI(dui)) {
-            console.error('Formato de DUI inválido. Debe ser 00000000-0');
+            Toast.show({
+                type: ALERT_TYPE.WARNING,
+                title: 'DUI inválido',
+                textBody: 'El formato de DUI debe ser 00000000-0',
+            });
             return false;
         }
 
         if (!validarCorreo(correo)) {
-            console.error('Formato de correo electrónico inválido');
+            Toast.show({
+                type: ALERT_TYPE.WARNING,
+                title: 'Correo inválido',
+                textBody: 'El correo debe tener un formato válido',
+            });
+
             return false;
         }
 
         if (!esClaveSegura(clave)) {
-            console.error('La contraseña debe contener al menos 8 caracteres y caracteres especiales');
+            Toast.show({
+                type: ALERT_TYPE.WARNING,
+                title: 'Contraseña débil',
+                textBody: 'La contraseña debe tener al menos 8 caracteres y un caracter especial',
+            });
             return false;
         }
 
@@ -64,13 +89,28 @@ const Register = ({ navigation }) => {
             const RESPONSE = await fetchData(CLIENTES_API, 'signUp', FORM_DATA);
 
             if (RESPONSE.status) {
-                console.warn(RESPONSE.message);
+                Toast.show({
+                    type: ALERT_TYPE.SUCCESS,
+                    title: 'Usuario registrado',
+                    textBody: 'Se ha registrado el usuario correctamente',
+                });
                 navigation.navigate('Main');
             } else {
-                console.error(RESPONSE.error || 'Error al registrar usuario');
+                Dialog.show({
+                    type: ALERT_TYPE.WARNING,
+                    title: RESPONSE.error || 'Error al registrar usuario',
+                    textBody: 'No se pudo registrar el usuario',
+                    buttontext: 'Ok',
+                });
             }
         } catch (error) {
-            console.error('Error al registrar usuario: ', error);
+
+            Dialog.show({
+                type: ALERT_TYPE.WARNING,
+                title: 'Error al registrar usuario',
+                textBody: 'No se pudo registrar el usuario',
+                buttontext: 'Ok',
+            });
         }
     };
 

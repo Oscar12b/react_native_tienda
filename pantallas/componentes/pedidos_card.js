@@ -1,7 +1,12 @@
 // components/PedidosCard.js
 import React, { useState } from 'react';
 import { View, Text, TextInput, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import { fetchData, PEDIDOS_API } from '../../utilidades/componentes';
+import { fetchData } from '../../utilidades/componentes';
+
+import { PEDIDOS_API, SERVER_URL } from '../../utilidades/constants';
+
+
+import { ALERT_TYPE, Dialog, Toast } from 'react-native-alert-notification';
 
 const PedidosCard = ({ item, onPedidoEliminado }) => {
     const [cantidad, setCantidad] = useState(item.cantidad_pedido);
@@ -16,13 +21,26 @@ const PedidosCard = ({ item, onPedidoEliminado }) => {
             const RESPONSE = await fetchData(PEDIDOS_API, 'updateAmountOrder', FORM_DATA);
 
             if (RESPONSE.status) {
-                console.warn('Cantidad actualizada');
+                Toast.show({
+                    type: ALERT_TYPE.SUCCESS,
+                    title: 'Cantidad actualizada',
+                    textBody: 'Se ha actualizado la cantidad',
+                });
+
             } else {
-                console.error(RESPONSE.error || 'Error al actualizar la cantidad');
+                Toast.show({
+                    type: ALERT_TYPE.WARNING,
+                    title: RESPONSE.error || 'Error al actualizar la cantidad',
+                    textBody: 'No se pudo actualizar la cantidad',
+                });
             }
         }
         catch (error) {
-            console.error('No se pudo actualizar la cantidad: ', error);
+            Toast.show({
+                type: ALERT_TYPE.WARNING,
+                title: 'Error al actualizar la cantidad',
+                textBody: 'No se pudo actualizar la cantidad',
+            });
         }
     };
 
@@ -35,20 +53,35 @@ const PedidosCard = ({ item, onPedidoEliminado }) => {
             const RESPONSE = await fetchData(PEDIDOS_API, 'deleteOrder', FORM_DATA);
 
             if (RESPONSE.status) {
-                console.warn('Pedido eliminado');
+                Toast.show({
+                    type: ALERT_TYPE.SUCCESS,
+                    title: 'Pedido eliminado',
+                    textBody: 'Se ha eliminado el pedido',
+                });
+
                 onPedidoEliminado(); // Notifica al componente padre
             } else {
-                console.error(RESPONSE.error || 'Error al eliminar el pedido');
+                Toast.show({
+                    type: ALERT_TYPE.WARNING,
+                    title: RESPONSE.error || 'Error al eliminar el pedido',
+                    textBody: 'No se pudo eliminar el pedido',
+                });
             }
         }
         catch (error) {
-            console.error('No se pudo eliminar el pedido: ', error);
+
+            Toast.show({
+                type: ALERT_TYPE.WARNING,
+                title: 'Error al eliminar el pedido',
+                textBody: 'No se pudo eliminar el pedido',
+            });
+
         }
     };
 
     return (
         <View style={styles.card}>
-            <Image source={{ uri: `http://192.168.1.26/api/imagenes/productos${item.imagen}` }} style={styles.productImage} />
+            <Image source={{ uri: `${SERVER_URL}/imagenes/productos${item.imagen_mueble}` }} style={styles.productImage} />
             <Text style={styles.title}>{item.nombre_mueble}</Text>
             <View style={styles.row}>
                 <View style={styles.column}>
