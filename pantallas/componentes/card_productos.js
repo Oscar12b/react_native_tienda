@@ -8,7 +8,7 @@ import { ALERT_TYPE, Dialog, Toast } from 'react-native-alert-notification';
 
 
 const ProductCard = ({ item }) => {
-
+// constatnte creada para rellenar la carta de productos
     const addToCart = async (idMueble) => {
         try {
             const FORM_DATA = new FormData();
@@ -66,6 +66,7 @@ const ProductCard = ({ item }) => {
         </View>
     );
 };
+// estilos para la carta productos
 
 const styles = StyleSheet.create({
     productCard: {
