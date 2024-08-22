@@ -3,7 +3,7 @@ import { fetchData, PEDIDOS_API } from '../../utilidades/componentes';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 
 const ProductCard = ({ item }) => {
-
+// constatnte creada para rellenar la carta de productos
     const addToCart = async (idMueble) => {
         try {
             const FORM_DATA = new FormData();
@@ -45,6 +45,7 @@ const ProductCard = ({ item }) => {
         </View>
     );
 };
+// estilos para la carta productos
 
 const styles = StyleSheet.create({
     productCard: {

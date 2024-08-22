@@ -8,6 +8,7 @@ const QuoteButton = ({ onPress }) => {
         </TouchableOpacity>
     );
 };
+// Estilo de botones
 
 const styles = StyleSheet.create({
     button: {
